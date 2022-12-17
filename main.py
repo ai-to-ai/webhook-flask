@@ -19,14 +19,18 @@ token = ""
 def home():
     username = request.args.get('username')
     password = request.args.get('password')
+    application_id = request.args.get('application_id')
+    application_custom_text1 = request.args.get('application_custom_text1')
+    application_stage = request.args.get('application_stage')
 
-    return {'username':username, 'password':password}
+
+    return {'application_id':application_id, 'application_custom_text1':application_custom_text1, 'application_stage':application_stage}
 
 if __name__ == '__main__':
     # service.py executed as script
 
     app.run()
-    
+
     scheduler = BlockingScheduler()
     scheduler.add_job(get_token.func, 'interval', days=1)
     scheduler.start()
